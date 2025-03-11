@@ -14,7 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _phoneController = TextEditingController();
 
   bool _isObsecure = false;
-  bool _isActive = true;
+  final bool _isActive = true;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
