@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invengo_application/api/album/model/pokemon.dart';
 import 'package:invengo_application/api/pokemon/fetch_pokemon/fetch.dart';
-import 'package:invengo_application/views/pokemon/detail_pokemon_screen.dart';
+import 'package:invengo_application/views/pokemon/pokemon_detail_screen.dart';
 
 class PokemonScreen extends StatefulWidget {
   const PokemonScreen({super.key});
@@ -22,7 +22,14 @@ class _PokemonScreenState extends State<PokemonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Pokedex", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),), backgroundColor: Colors.amberAccent, centerTitle: true,),
+      appBar: AppBar(
+        title: Text(
+          "Pokedex",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        backgroundColor: Colors.amberAccent,
+        centerTitle: true,
+      ),
       body: Container(
         color: Colors.amber[50],
         child: FutureBuilder<List<Pokemon>>(
@@ -51,20 +58,23 @@ class _PokemonScreenState extends State<PokemonScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailPokemonScreen(),
+                          builder:
+                              (context) =>
+                                  PokemonDetailScreen(pokemon: pokemon),
                         ),
                       );
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(pokemon.img, height: 100),
                           Text(
                             pokemon.name,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),

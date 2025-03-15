@@ -7,6 +7,11 @@ class Pokemon {
   final String height;
   final String weight;
   final String candy;
+  final int? candyCount;
+  final String egg;
+  final double spawnChance;
+  final double avgSpawns;
+  final String spawnTime;
   final List<String> weaknesses;
 
   Pokemon({
@@ -18,6 +23,11 @@ class Pokemon {
     required this.height,
     required this.weight,
     required this.candy,
+    required this.candyCount,
+    required this.egg,
+    required this.spawnChance,
+    required this.avgSpawns,
+    required this.spawnTime,
     required this.weaknesses,
   });
 
@@ -32,6 +42,11 @@ class Pokemon {
       height: json['height'],
       weight: json['weight'],
       candy: json['candy'],
+      candyCount: json['candy_count'],
+      egg: json['egg'],
+      spawnChance: json['spawn_chance']?.toDouble(),
+      avgSpawns: json['avg_spawns']?.toDouble(),
+      spawnTime: json['spawn_time'],
       weaknesses: List<String>.from(json['weaknesses']),
     );
   }
@@ -45,9 +60,10 @@ class Pokedex {
 
   factory Pokedex.fromJson(Map<String, dynamic> json) {
     return Pokedex(
-      pokemon: (json['pokemon'] as List)
-          .map((data) => Pokemon.fromJson(data))
-          .toList(),
+      pokemon:
+          (json['pokemon'] as List)
+              .map((data) => Pokemon.fromJson(data))
+              .toList(),
     );
   }
 }
